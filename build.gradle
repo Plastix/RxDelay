@@ -1,0 +1,13 @@
+subprojects {
+    group 'io.github.plastix'
+    version '0.5.0-SNAPSHOT'
+}
+
+ext {
+    sourceCompatibilityVersion = JavaVersion.VERSION_1_7
+    targetCompatibilityVersion = JavaVersion.VERSION_1_7
+
+    // Dependencies
+    rxJava = 'io.reactivex:rxjava:1.2.0'
+    junit = 'junit:junit:4.12'
+}
