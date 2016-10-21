@@ -14,7 +14,7 @@ final class DelaySingleTransformer<T> implements Single.Transformer<T, T> {
     @Override
     public Single<T> call(final Single<T> single) {
         return single.toObservable()
-                .compose(new DelayReplayObservableTransformer<T>(pauseLifecycle))
+                .compose(new DelayFirstObservableTransformer<T>(pauseLifecycle))
                 .toSingle();
 
     }
