@@ -13,6 +13,6 @@ final class DelayFirstObservableTransformer<T> implements Observable.Transformer
     @Override
     public Observable<T> call(Observable<T> observable) {
         return observable.take(1)
-                .compose(new DelayReplayObservableTransformer<T>(pauseLifecycle));
+                .compose(new DelayLatestObservableTransformer<T>(pauseLifecycle));
     }
 }
