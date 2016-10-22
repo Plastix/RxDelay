@@ -7,6 +7,8 @@ import rx.subjects.BehaviorSubject;
 import rx.subjects.Subject;
 import rx.subscriptions.CompositeSubscription;
 
+import javax.annotation.Nonnull;
+
 final class DelayObservableTransformer<T> implements Observable.Transformer<T, T> {
 
     private final CompositeSubscription subscriptions = new CompositeSubscription();
@@ -14,7 +16,7 @@ final class DelayObservableTransformer<T> implements Observable.Transformer<T, T
     private final Observable<Boolean> pauseLifecycle;
     private final Subject<T, T> buffer;
 
-    DelayObservableTransformer(Observable<Boolean> pauseLifecycle, Subject<T, T> buffer) {
+    DelayObservableTransformer(@Nonnull Observable<Boolean> pauseLifecycle, @Nonnull Subject<T, T> buffer) {
         this.pauseLifecycle = pauseLifecycle;
         this.buffer = buffer;
     }

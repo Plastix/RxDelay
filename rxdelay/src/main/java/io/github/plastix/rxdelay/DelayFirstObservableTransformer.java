@@ -2,11 +2,13 @@ package io.github.plastix.rxdelay;
 
 import rx.Observable;
 
+import javax.annotation.Nonnull;
+
 final class DelayFirstObservableTransformer<T> implements Observable.Transformer<T, T> {
 
     private final Observable<Boolean> pauseLifecycle;
 
-    DelayFirstObservableTransformer(Observable<Boolean> pauseLifecycle) {
+    DelayFirstObservableTransformer(@Nonnull Observable<Boolean> pauseLifecycle) {
         this.pauseLifecycle = pauseLifecycle;
     }
 

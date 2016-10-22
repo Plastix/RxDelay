@@ -9,4 +9,6 @@ ext {
     // Dependencies
     rxJava = 'io.reactivex:rxjava:1.2.0'
     junit = 'junit:junit:4.12'
+
+    jsr305Annotations = 'com.google.code.findbugs:jsr305:3.0.1'
 }

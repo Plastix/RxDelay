@@ -4,11 +4,13 @@ import rx.Observable;
 import rx.subjects.BehaviorSubject;
 import rx.subjects.ReplaySubject;
 
+import javax.annotation.Nonnull;
+
 final class DelayLatestObservableTransformer<T> implements Observable.Transformer<T, T> {
 
     private final Observable<Boolean> pauseLifecycle;
 
-    DelayLatestObservableTransformer(Observable<Boolean> pauseLifecycle) {
+    DelayLatestObservableTransformer(@Nonnull Observable<Boolean> pauseLifecycle) {
         this.pauseLifecycle = pauseLifecycle;
     }
 
