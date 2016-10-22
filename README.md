@@ -13,7 +13,22 @@ myObservable
 When the `pauseLifecycle` observable emits `False`, `myObservable` emissions will be delayed until `pauseLifecycle` emits `True`. RxDelay supports different transformers which treat emissions while paused differently. See the list of transformers below.
 
 ## Installation 
-TODO
+Add to top level *gradle.build* file:
+
+```gradle
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+Add to app module *gradle.build* file:
+```gradle
+dependencies {
+    compile 'com.github.Plastix:RxDelay:<VERSION>'
+}
+```
 
 ## Transformers
 RxDelay comes with three main observable transformers. All transformers emit data normally while the observable is "enabled" —that is, the last event emitted by the lifecycle observable is `True`. 
