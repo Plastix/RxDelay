@@ -26,7 +26,12 @@ allprojects {
 Add to app module *gradle.build* file:
 ```gradle
 dependencies {
-    compile 'com.github.Plastix:RxDelay:<VERSION>'
+
+    // For RxJava 1
+    compile 'com.github.Plastix:RxDelay:rx1:0.5.0'
+
+    // For RxJava 2
+    compile 'com.github.Plastix:RxDelay:rx2:0.5.0'
 }
 ```
 
