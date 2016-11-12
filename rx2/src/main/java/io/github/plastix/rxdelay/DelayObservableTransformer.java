@@ -1,5 +1,6 @@
 package io.github.plastix.rxdelay;
 
+import io.github.plastix.rxdelay.internal.DisposableDelegateObserver;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
@@ -8,7 +9,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.Subject;
 
@@ -49,42 +49,11 @@ final class DelayObservableTransformer<T> implements ObservableTransformer<T, T>
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        subscriptions.add(upstream.subscribeWith(new DisposableObserver<T>(){
-                            @Override
-                            public void onNext(T value) {
-                                buffer.onNext(value);
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                buffer.onError(e);
-                            }
-
-                            @Override
-                            public void onComplete() {
-                                buffer.onComplete();
-                            }
-                        }));
-
+                        subscriptions.add(upstream.subscribeWith(new DisposableDelegateObserver<>(buffer)));
 
                         // Wrap pauseLifecycle in a subject called lifecycleWrapper
                         // This has to do with the limitation of the switchMap operator
-                        subscriptions.add(pauseLifecycle.subscribeWith(new DisposableObserver<Boolean>(){
-                            @Override
-                            public void onNext(Boolean value) {
-                                lifecycleWrapper.onNext(value);
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-                                lifecycleWrapper.onError(e);
-                            }
-
-                            @Override
-                            public void onComplete() {
-                                lifecycleWrapper.onComplete();
-                            }
-                        }));
+                        subscriptions.add(pauseLifecycle.subscribeWith(new DisposableDelegateObserver<>(lifecycleWrapper)));
 
                     }
                 })
