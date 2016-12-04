@@ -11,5 +11,5 @@ ext {
     rxJava2 = 'io.reactivex.rxjava2:rxjava:2.0.0'
     junit = 'junit:junit:4.12'
 
-    jsr305Annotations = 'com.google.code.findbugs:jsr305:3.0.1'
+    jsr305Annotations = 'com.google.code.findbugs:jsr305:2.0.1'
 }
