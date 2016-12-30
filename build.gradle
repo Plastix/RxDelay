@@ -1,5 +1,5 @@
 subprojects {
-    group 'io.github.plastix'
+    group 'com.github.Plastix'
 }
 
 ext {
